@@ -1,0 +1,228 @@
+{
+  "info": {
+    "name": "Smart Clinic Management API",
+    "description": "Complete API collection for Smart Clinic Management System",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"John Doe\",\n  \"email\": \"john.doe@example.com\",\n  \"phone\": \"+1234567890\",\n  \"password\": \"SecurePassword123\",\n  \"confirmPassword\": \"SecurePassword123\",\n  \"role\": \"PATIENT\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/auth/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ]
+            },
+            "description": "Register a new user with email, phone, password and role"
+          },
+          "response": []
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"john.doe@example.com\",\n  \"password\": \"SecurePassword123\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            },
+            "description": "Login with email and password to get JWT token"
+          },
+          "response": []
+        }
+      ],
+      "description": "All authentication related endpoints"
+    },
+    {
+      "name": "Test Endpoints",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/test/health",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "test",
+                "health"
+              ]
+            },
+            "description": "Public endpoint to check server health"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Current User",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_jwt_token_here",
+                "description": "Replace with your JWT token from login"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/test/me",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "test",
+                "me"
+              ]
+            },
+            "description": "Get information about the authenticated user"
+          },
+          "response": []
+        },
+        {
+          "name": "Admin Test",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_admin_jwt_token_here",
+                "description": "Replace with an admin JWT token"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/test/admin-test",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "test",
+                "admin-test"
+              ]
+            },
+            "description": "Admin-only endpoint - accessible only with ADMIN role"
+          },
+          "response": []
+        },
+        {
+          "name": "Doctor Test",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_doctor_jwt_token_here",
+                "description": "Replace with a doctor JWT token"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/test/doctor-test",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "test",
+                "doctor-test"
+              ]
+            },
+            "description": "Doctor-only endpoint - accessible only with DOCTOR role"
+          },
+          "response": []
+        },
+        {
+          "name": "Patient Test",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_patient_jwt_token_here",
+                "description": "Replace with a patient JWT token"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/test/patient-test",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "test",
+                "patient-test"
+              ]
+            },
+            "description": "Patient-only endpoint - accessible only with PATIENT role"
+          },
+          "response": []
+        }
+      ],
+      "description": "Test endpoints for verifying authentication and authorization"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080/api"
+    },
+    {
+      "key": "token",
+      "value": ""
+    }
+  ]
+}
+

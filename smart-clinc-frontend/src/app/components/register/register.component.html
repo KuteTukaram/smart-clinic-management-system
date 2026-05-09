@@ -1,0 +1,115 @@
+<div class="auth-container">
+  <div class="auth-header">
+    <h1>Create Account</h1>
+    <p>Join Smart Clinic Management System</p>
+  </div>
+
+  <div *ngIf="successMessage" class="alert alert-success">
+    {{ successMessage }}
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-error">
+    {{ errorMessage }}
+  </div>
+
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="fullName">Full Name</label>
+      <input
+        type="text"
+        id="fullName"
+        formControlName="fullName"
+        placeholder="Enter your full name"
+        [class.error]="fullName.invalid && fullName.touched"
+      />
+      <span *ngIf="fullName.invalid && fullName.touched" class="error-message">
+        {{ getErrorMessage(fullName) }}
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      <input
+        type="email"
+        id="email"
+        formControlName="email"
+        placeholder="Enter your email"
+        [class.error]="email.invalid && email.touched"
+      />
+      <span *ngIf="email.invalid && email.touched" class="error-message">
+        {{ getErrorMessage(email) }}
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Phone Number</label>
+      <input
+        type="tel"
+        id="phone"
+        formControlName="phone"
+        placeholder="Enter your phone number (e.g., +1234567890)"
+        [class.error]="phone.invalid && phone.touched"
+      />
+      <span *ngIf="phone.invalid && phone.touched" class="error-message">
+        {{ getErrorMessage(phone) }}
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="role">Role</label>
+      <select
+        id="role"
+        formControlName="role"
+        [class.error]="role.invalid && role.touched"
+      >
+        <option value="PATIENT">Patient</option>
+        <option value="DOCTOR">Doctor</option>
+        <option value="ADMIN">Admin</option>
+      </select>
+      <span *ngIf="role.invalid && role.touched" class="error-message">
+        {{ getErrorMessage(role) }}
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        formControlName="password"
+        placeholder="Create a password (min 6 characters)"
+        [class.error]="password.invalid && password.touched"
+      />
+      <span *ngIf="password.invalid && password.touched" class="error-message">
+        {{ getErrorMessage(password) }}
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="confirmPassword">Confirm Password</label>
+      <input
+        type="password"
+        id="confirmPassword"
+        formControlName="confirmPassword"
+        placeholder="Confirm your password"
+        [class.error]="confirmPassword.invalid && confirmPassword.touched"
+      />
+      <span *ngIf="confirmPassword.invalid && confirmPassword.touched" class="error-message">
+        {{ getErrorMessage(confirmPassword) }}
+      </span>
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="isLoading || registerForm.invalid"
+    >
+      <span *ngIf="isLoading" class="loading"></span>
+      {{ isLoading ? 'Creating Account...' : 'Create Account' }}
+    </button>
+  </form>
+
+  <div class="auth-footer">
+    <p>Already have an account? <a routerLink="/login">Sign in here</a></p>
+  </div>
+</div>
